@@ -45,7 +45,7 @@ export default function PostCard({ post, onPress }: Props) {
         ? <Image source={{ uri: post.photo.dataUrl }} style={s.photo} />
         : null}
 
-      {(post.highlights || post.bestMoment) && (
+      {!!(post.highlights || post.bestMoment) && (
         <Text style={[s.body, { color: t.text }]} numberOfLines={4}>
           {post.highlights || post.bestMoment}
         </Text>
