@@ -1,14 +1,38 @@
 {
   "name": "cruise-ship-mobile",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "version": "0.1.0",
+  "private": true,
+  "main": "expo-router/entry",
   "scripts": {
-    "build": "tsc"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@supabase/supabase-js": "^2.103.0",
+    "expo": "^55.0.23",
+    "expo-constants": "~55.0.16",
+    "expo-image-picker": "~55.0.20",
+    "expo-linking": "~55.0.15",
+    "expo-router": "~55.0.14",
+    "expo-secure-store": "~55.0.13",
+    "expo-status-bar": "~55.0.6",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-native": "0.83.6",
+    "react-native-gesture-handler": "~2.30.0",
+    "react-native-reanimated": "4.2.1",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0",
+    "react-native-url-polyfill": "^2.0.0",
+    "react-native-web": "^0.21.0"
+  },
   "devDependencies": {
-    "typescript": "^5.5.3"
-  },
-  "private": true
+    "@babel/core": "^7.20.0",
+    "@types/react": "~18.2.79",
+    "typescript": "~5.3.3"
+  }
 }
