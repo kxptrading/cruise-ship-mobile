@@ -47,7 +47,7 @@ export default function TabsLayout() {
       />
       <Tabs.Screen
         name="profile"
-        options={{ title: 'Profile', tabBarIcon: tabIcon('👤') }}
+        options={{ title: 'Profile', headerShown: false, tabBarIcon: tabIcon('👤') }}
       />
     </Tabs>
   )

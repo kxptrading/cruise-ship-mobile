@@ -1,11 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// app/_layout.tsx — Root layout
-//
-// Sets up auth context, decides whether the user sees the (auth) flow or the
-// (tabs) flow, and configures the gesture handler / safe-area providers
-// every Expo Router app needs.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import 'react-native-gesture-handler'
 import { useEffect } from 'react'
 import { Stack, useRouter, useSegments } from 'expo-router'
@@ -13,9 +5,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { ActivityIndicator, View } from 'react-native'
 import { AuthProvider, useAuth } from '../src/lib/auth'
-import { activeTheme } from '../src/lib/theme'
+import { ThemeProvider, activeTheme } from '../src/lib/theme'
 
 function AuthGate() {
+  const t = activeTheme()
   const { session, loading } = useAuth()
   const segments = useSegments()
   const router   = useRouter()
@@ -31,7 +24,6 @@ function AuthGate() {
   }, [session, loading, segments, router])
 
   if (loading) {
-    const t = activeTheme()
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bg }}>
         <ActivityIndicator size="large" color={t.primary} />
@@ -50,10 +42,12 @@ function AuthGate() {
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <StatusBar style="dark" />
-        <AuthGate />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <StatusBar style="light" />
+          <AuthGate />
+        </AuthProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   )
 }
