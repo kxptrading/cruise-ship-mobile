@@ -1,12 +1,5 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// app/(tabs)/_layout.tsx — Bottom tab navigation
-//
-// Three tabs: Feed, Journal (daily log hub), Profile. Other journal sections
-// will live inside the Journal stack as they're ported.
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { Tabs } from 'expo-router'
-import { Text } from 'react-native'
+import { Platform, Text } from 'react-native'
 import { activeTheme } from '../../src/lib/theme'
 
 function tabIcon(emoji: string) {
@@ -20,37 +13,41 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerStyle:        { backgroundColor: t.surface },
-        headerTitleStyle:   { color: t.text, fontFamily: 'Georgia', fontSize: 20 },
-        tabBarActiveTintColor:   t.primary,
-        tabBarInactiveTintColor: t.muted,
-        tabBarStyle: {
-          backgroundColor: t.surface,
-          borderTopColor:  t.border,
+        // Header — dark primary background with white title, mirrors web top nav
+        headerStyle:      { backgroundColor: t.primaryDk },
+        headerTitleStyle: {
+          color:      '#FFFFFF',
+          fontFamily: Platform.select({ ios: 'Georgia', default: 'serif' }),
+          fontSize:   20,
         },
+        headerTintColor: '#FFFFFF',
+
+        // Tab bar — dark primary background, gold active, soft white inactive
+        tabBarActiveTintColor:   t.accent,
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.55)',
+        tabBarStyle: {
+          backgroundColor: t.primaryDk,
+          borderTopColor:  t.primaryMid,
+          borderTopWidth:  1,
+        },
+        tabBarLabelStyle: { fontWeight: '600', fontSize: 11 },
       }}
     >
       <Tabs.Screen
         name="index"
-        options={{
-          title: 'Feed',
-          tabBarIcon: tabIcon('🌊'),
-        }}
+        options={{ title: 'Feed', tabBarIcon: tabIcon('🌊') }}
       />
       <Tabs.Screen
         name="journal"
         options={{
-          title: 'Journal',
-          headerShown: false, // journal stack manages its own headers
-          tabBarIcon: tabIcon('📔'),
+          title:        'Journal',
+          headerShown:  false,
+          tabBarIcon:   tabIcon('📔'),
         }}
       />
       <Tabs.Screen
         name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: tabIcon('👤'),
-        }}
+        options={{ title: 'Profile', tabBarIcon: tabIcon('👤') }}
       />
     </Tabs>
   )

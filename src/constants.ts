@@ -1,30 +1,23 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// constants.ts — Design tokens (mobile)
-//
-// Mobile build can't use CSS variables, so colours are concrete hex values.
-// Theme switching at runtime is handled via context (see src/lib/theme.ts).
-// ─────────────────────────────────────────────────────────────────────────────
+// Colour palette — mirrors the web app's Ocean Blue default theme.
+export const OCEAN   = '#0EA5E9'
+export const NAVY    = '#0369A1'
+export const NAVY2   = '#0284C7'
+export const GOLD    = '#F59E0B'
+export const CREAM   = '#F8F9FA'
+export const WHITE   = '#FFFFFF'
+export const BORDER  = '#E5E7EB'
+export const TEXT    = '#1C2B3A'
+export const MUTED   = '#6B7280'
+export const LIGHT   = '#F9FAFB'
+export const TEAL    = '#10B981'
+export const ROSE    = '#F97316'
+export const PLUM    = '#8B5CF6'
 
-// ── Default colour palette (Navy/Gold theme) ──────────────────────────────────
-export const NAVY   = '#1B3A5C'
-export const NAVY2  = '#14293F'
-export const GOLD   = '#C9A227'
-export const CREAM  = '#F4F1EB'
-export const WHITE  = '#FFFFFF'
-export const BORDER = '#E0DBD0'
-export const TEXT   = '#1C2B3A'
-export const MUTED  = '#7A8594'
-export const LIGHT  = '#F9F7F3'
-export const TEAL   = '#0D6B55'
-export const ROSE   = '#B03060'
-export const PLUM   = '#4A3B8C'
-
-// ── Per-section accent colours ────────────────────────────────────────────────
 export const SECTION_COLORS: Record<string, string> = {
-  feed:          NAVY,
-  voyage:        NAVY,
+  feed:          OCEAN,
+  voyage:        OCEAN,
   itinerary:     TEAL,
-  daily:         NAVY,
+  daily:         OCEAN,
   food:          ROSE,
   dining:        ROSE,
   entertainment: PLUM,
@@ -36,7 +29,6 @@ export const SECTION_COLORS: Record<string, string> = {
   notes:         PLUM,
 }
 
-// ── Weather chip data ─────────────────────────────────────────────────────────
 export const WX_EMOJI: Record<string, string> = {
   Sunny: '☀️', Cloudy: '☁️', Rainy: '🌧️',
   Windy: '💨', Hot: '🌡️', Mild: '🌤️', Cool: '❄️',

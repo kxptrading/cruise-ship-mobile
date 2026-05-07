@@ -4,6 +4,7 @@
 
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { WX_EMOJI, WX_STYLE } from '../constants'
+import { activeTheme } from '../lib/theme'
 
 interface Props {
   value:    string[]
@@ -13,6 +14,7 @@ interface Props {
 const ALL = Object.keys(WX_EMOJI)
 
 export default function WeatherChips({ value, onChange }: Props) {
+  const t = activeTheme()
   const toggle = (name: string) => {
     onChange(value.includes(name) ? value.filter(v => v !== name) : [...value, name])
   }
@@ -30,11 +32,11 @@ export default function WeatherChips({ value, onChange }: Props) {
             onPress={() => toggle(name)}
             style={[
               s.chip,
-              { backgroundColor: on ? style.background : '#FFFFFF', borderColor: on ? style.border : '#E0DBD0' },
+              { backgroundColor: on ? style.background : t.surface, borderColor: on ? style.border : t.border },
             ]}
           >
             <Text style={{ fontSize: 14 }}>{WX_EMOJI[name]}</Text>
-            <Text style={[s.label, { color: on ? style.color : '#7A8594' }]}>{name}</Text>
+            <Text style={[s.label, { color: on ? style.color : t.muted }]}>{name}</Text>
           </Pressable>
         )
       })}

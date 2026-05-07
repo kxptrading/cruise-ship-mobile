@@ -54,7 +54,7 @@ export default function Login() {
           keyboardShouldPersistTaps="handled"
         >
           <View style={s.brand}>
-            <Text style={[s.brandTitle, { color: t.primary }]}>Cruise Ship Journal</Text>
+            <Text style={[s.brandTitle, { color: t.primaryDk }]}>Cruise Ship Journal</Text>
             <Text style={[s.brandSubtitle, { color: t.muted }]}>
               {mode === 'signin' ? 'Welcome back aboard.' : 'Set sail with a new log.'}
             </Text>

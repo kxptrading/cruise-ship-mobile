@@ -1,15 +1,8 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// lib/theme.ts — Theme tokens (mobile)
-//
-// The web app drives 20 themes via CSS custom properties. RN doesn't support
-// CSS variables, so each theme is a static object. For the first release we
-// ship a single "Navy & Gold" theme — multi-theme switching can come later
-// via a ThemeContext.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export interface Theme {
   primary:    string
   primaryDk:  string
+  primaryMid: string
+  primaryLt:  string
   accent:     string
   bg:         string
   surface:    string
@@ -19,20 +12,21 @@ export interface Theme {
   light:      string
 }
 
-export const navyGold: Theme = {
-  primary:    '#1B3A5C',
-  primaryDk:  '#14293F',
-  accent:     '#C9A227',
-  bg:         '#F4F1EB',
+/** Ocean Blue — mirrors the web app's default theme. */
+export const ocean: Theme = {
+  primary:    '#0EA5E9',
+  primaryDk:  '#0369A1',
+  primaryMid: '#0284C7',
+  primaryLt:  '#38BDF8',
+  accent:     '#F59E0B',
+  bg:         '#F8F9FA',
   surface:    '#FFFFFF',
-  border:     '#E0DBD0',
+  border:     '#E5E7EB',
   text:       '#1C2B3A',
-  muted:      '#7A8594',
-  light:      '#F9F7F3',
+  muted:      '#6B7280',
+  light:      '#F9FAFB',
 }
 
-/** Single source of truth for the active theme. Kept as a function so a
- *  future ThemeContext can swap implementations without touching consumers. */
 export function activeTheme(): Theme {
-  return navyGold
+  return ocean
 }
