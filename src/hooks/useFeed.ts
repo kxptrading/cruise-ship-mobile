@@ -31,7 +31,7 @@ interface DailyLogRow {
 }
 
 interface VoyageRow  { id: string; user_id: string; ship_name: string | null }
-interface ProfileRow { id: string; display_name: string | null; avatar_url: string | null }
+interface ProfileRow { user_id: string; display_name: string | null; avatar_url: string | null; email: string | null }
 interface PhotoRow   { voyage_id: string; day_number: number; storage_path: string; caption: string | null }
 
 function initialsFor(name: string | null | undefined): string {
@@ -84,14 +84,14 @@ export function useFeed(): UseFeedReturn {
     if (userIds.length > 0) {
       const { data } = await supabase
         .from('profiles')
-        .select('id, display_name, avatar_url')
-        .in('id', userIds)
+        .select('user_id, display_name, avatar_url, email')
+        .in('user_id', userIds)
       profiles = (data ?? []) as ProfileRow[]
     }
 
     // Build lookup maps
-    const voyageMap  = new Map(voyages.map(v  => [v.id,      v]))
-    const profileMap = new Map(profiles.map(p => [p.id,      p]))
+    const voyageMap  = new Map(voyages.map(v  => [v.id,       v]))
+    const profileMap = new Map(profiles.map(p => [p.user_id,  p]))
 
     // First photo per (voyage_id, day_number)
     const photoMap = new Map<string, PhotoRow>()
@@ -109,9 +109,9 @@ export function useFeed(): UseFeedReturn {
       const photo  = photoMap.get(`${row.voyage_id}-${row.day_number}`)
 
       const author: FeedAuthor = {
-        name:      prof?.display_name || 'Traveller',
+        name:      prof?.display_name || prof?.email?.split('@')[0] || 'Traveller',
         avatarUrl: prof?.avatar_url ?? '',
-        initials:  initialsFor(prof?.display_name),
+        initials:  initialsFor(prof?.display_name || prof?.email?.split('@')[0]),
         shipName:  voyage?.ship_name ?? '',
       }
 

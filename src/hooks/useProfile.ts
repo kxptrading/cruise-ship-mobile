@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase'
 
 export interface Profile {
   displayName:         string
+  email:               string
   homePort:            string
   favouriteCruiseLine: string
   avatarUrl:           string
@@ -11,10 +12,12 @@ export interface Profile {
   dietary:             string
   currency:            string
   units:               string
+  theme:               string
 }
 
 const DEFAULTS: Profile = {
   displayName:         '',
+  email:               '',
   homePort:            '',
   favouriteCruiseLine: '',
   avatarUrl:           '',
@@ -23,25 +26,29 @@ const DEFAULTS: Profile = {
   dietary:             '',
   currency:            'GBP',
   units:               'Metric',
+  theme:               '',
 }
 
 function fromDb(row: Record<string, unknown>): Profile {
   return {
-    displayName:         String(row.display_name         ?? ''),
-    homePort:            String(row.home_port            ?? ''),
+    displayName:         String(row.display_name          ?? ''),
+    email:               String(row.email                 ?? ''),
+    homePort:            String(row.home_port             ?? ''),
     favouriteCruiseLine: String(row.favourite_cruise_line ?? ''),
-    avatarUrl:           String(row.avatar_url           ?? ''),
-    cabinPreference:     String(row.cabin_preference     ?? ''),
-    diningTime:          String(row.dining_time          ?? ''),
-    dietary:             String(row.dietary              ?? ''),
-    currency:            String(row.currency             ?? 'GBP'),
-    units:               String(row.units                ?? 'Metric'),
+    avatarUrl:           String(row.avatar_url            ?? ''),
+    cabinPreference:     String(row.cabin_preference      ?? ''),
+    diningTime:          String(row.dining_time           ?? ''),
+    dietary:             String(row.dietary               ?? ''),
+    currency:            String(row.currency              ?? 'GBP'),
+    units:               String(row.units                 ?? 'Metric'),
+    theme:               String(row.theme                 ?? ''),
   }
 }
 
 function toDb(patch: Partial<Profile>): Record<string, unknown> {
   const row: Record<string, unknown> = {}
   if (patch.displayName         !== undefined) row.display_name          = patch.displayName
+  if (patch.email               !== undefined) row.email                 = patch.email
   if (patch.homePort            !== undefined) row.home_port             = patch.homePort
   if (patch.favouriteCruiseLine !== undefined) row.favourite_cruise_line = patch.favouriteCruiseLine
   if (patch.avatarUrl           !== undefined) row.avatar_url            = patch.avatarUrl
@@ -50,6 +57,7 @@ function toDb(patch: Partial<Profile>): Record<string, unknown> {
   if (patch.dietary             !== undefined) row.dietary               = patch.dietary
   if (patch.currency            !== undefined) row.currency              = patch.currency
   if (patch.units               !== undefined) row.units                 = patch.units
+  if (patch.theme               !== undefined) row.theme                 = patch.theme
   return row
 }
 
@@ -70,7 +78,7 @@ export function useProfile({ userId }: { userId: string | null }): UseProfileRet
   useEffect(() => {
     if (!userId) { setLoaded(true); return }
     let cancelled = false
-    supabase.from('profiles').select('*').eq('id', userId).single()
+    supabase.from('profiles').select('*').eq('user_id', userId).single()
       .then(({ data, error }) => {
         if (cancelled) return
         if (data) setProfile(fromDb(data as Record<string, unknown>))
@@ -86,7 +94,7 @@ export function useProfile({ userId }: { userId: string | null }): UseProfileRet
     pending.current = {}
     const { error } = await supabase
       .from('profiles')
-      .upsert({ id: userId, ...toDb(patch) }, { onConflict: 'id' })
+      .upsert({ user_id: userId, ...toDb(patch) }, { onConflict: 'user_id' })
     if (error) console.warn('profile upsert', error)
   }, [userId])
 

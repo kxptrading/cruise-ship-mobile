@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import {
   ActivityIndicator,
   Modal,
@@ -68,6 +68,13 @@ export default function Profile() {
   const { profile, loaded, updateProfile } = useProfile({ userId })
   const { allVoyages, dailyLogs }          = useVoyage({ userId })
 
+  // Apply theme saved in the profile (syncs with web app)
+  useEffect(() => {
+    if (loaded && profile.theme && profile.theme in THEMES) {
+      setThemeId(profile.theme as ThemeKey)
+    }
+  }, [loaded, profile.theme])
+
   // Stats
   const totalNights  = allVoyages.reduce((sum, v) => sum + (v.total_nights ?? 0), 0)
   const daysLogged   = dailyLogs.filter(d => d.highlights || d.bestMoment).length
@@ -118,8 +125,9 @@ export default function Profile() {
     )
   }
 
-  const userInitials = initials(profile.displayName, session?.user?.email ?? '')
+  const userInitials = initials(profile.displayName, profile.email || session?.user?.email || '')
   const subtitle     = [profile.homePort, profile.favouriteCruiseLine].filter(Boolean).join(' · ')
+                     || profile.email
                      || session?.user?.email
                      || ''
 
@@ -155,7 +163,7 @@ export default function Profile() {
               ) : (
                 <Pressable onPress={startEditName} style={s.nameRow}>
                   <Text style={s.heroName} numberOfLines={1}>
-                    {profile.displayName || session?.user?.email?.split('@')[0] || 'Your name'}
+                    {profile.displayName || profile.email?.split('@')[0] || session?.user?.email?.split('@')[0] || 'Your name'}
                   </Text>
                   <Text style={s.editIcon}>✏</Text>
                 </Pressable>
@@ -190,7 +198,7 @@ export default function Profile() {
                     return (
                       <Pressable
                         key={id}
-                        onPress={() => setThemeId(id)}
+                        onPress={() => { setThemeId(id); updateProfile({ theme: id }) }}
                         style={s.circleWrap}
                         accessibilityLabel={meta.label}
                         accessibilityState={{ selected: active }}
