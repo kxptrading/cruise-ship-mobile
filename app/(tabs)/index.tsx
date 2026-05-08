@@ -1,12 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// app/(tabs)/index.tsx — Public feed
-//
-// Shows public daily logs from all voyages. Pull-to-refresh re-fetches.
-// Tapping a post jumps into your own daily log for that day. (Cross-voyage
-// "open someone else's voyage" navigation comes after the friends/follow
-// model is ported.)
-// ─────────────────────────────────────────────────────────────────────────────
-
 import {
   ActivityIndicator,
   FlatList,
@@ -20,6 +11,7 @@ import { useRouter } from 'expo-router'
 import { useFeed } from '../../src/hooks/useFeed'
 import PostCard from '../../src/components/PostCard'
 import { activeTheme } from '../../src/lib/theme'
+import { F_DISPLAY, F_BODY } from '../../src/lib/fonts'
 
 export default function Feed() {
   const t = activeTheme()
@@ -69,6 +61,6 @@ const s = StyleSheet.create({
   safe:        { flex: 1 },
   listContent: { padding: 16, gap: 14, flexGrow: 1 },
   empty:       { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 40, gap: 8 },
-  emptyTitle:  { fontSize: 18, fontFamily: 'Georgia' },
-  emptySub:    { fontSize: 13, textAlign: 'center' },
+  emptyTitle:  { fontSize: 22, fontFamily: F_DISPLAY },
+  emptySub:    { fontSize: 13, fontFamily: F_BODY, textAlign: 'center' },
 })

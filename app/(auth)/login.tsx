@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// app/(auth)/login.tsx — Email + password sign in / sign up screen
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { useState } from 'react'
 import {
   KeyboardAvoidingView,
@@ -16,6 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useAuth } from '../../src/lib/auth'
 import { activeTheme } from '../../src/lib/theme'
+import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../../src/lib/fonts'
 
 type Mode = 'signin' | 'signup'
 
@@ -125,14 +122,14 @@ const s = StyleSheet.create({
   flex1:         { flex: 1 },
   scroll:        { flexGrow: 1, justifyContent: 'center', padding: 24, gap: 28 },
   brand:         { alignItems: 'center', gap: 6 },
-  brandTitle:    { fontSize: 28, fontWeight: '700', fontFamily: Platform.select({ ios: 'Georgia', default: 'serif' }) },
-  brandSubtitle: { fontSize: 14 },
+  brandTitle:    { fontSize: 32, fontFamily: F_DISPLAY },
+  brandSubtitle: { fontSize: 14, fontFamily: F_BODY },
   card:          { borderRadius: 22, borderWidth: 1, padding: 24, gap: 4 },
-  label:         { fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 },
-  input:         { borderWidth: 1, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16 },
-  error:         { color: '#B91C1C', marginTop: 12, fontSize: 13 },
+  label:         { fontSize: 11, fontFamily: F_BOLD, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 },
+  input:         { borderWidth: 1, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 16, fontFamily: F_BODY },
+  error:         { color: '#B91C1C', marginTop: 12, fontSize: 13, fontFamily: F_BODY },
   button:        { borderRadius: 12, paddingVertical: 14, marginTop: 24, alignItems: 'center' },
-  buttonText:    { color: '#FFFFFF', fontWeight: '700', fontSize: 16 },
+  buttonText:    { color: '#FFFFFF', fontFamily: F_BOLD, fontSize: 16 },
   switchMode:    { marginTop: 16, alignItems: 'center' },
-  switchText:    { fontSize: 13, fontWeight: '600' },
+  switchText:    { fontSize: 13, fontFamily: F_SEMI },
 })

@@ -1,10 +1,7 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// components/Field.tsx — Labelled TextInput wrapper used throughout forms
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import type { TextInputProps } from 'react-native'
 import { activeTheme } from '../lib/theme'
+import { F_BOLD, F_BODY } from '../lib/fonts'
 
 interface Props extends Omit<TextInputProps, 'style'> {
   label:      string
@@ -32,7 +29,7 @@ export default function Field({ label, multiline, ...textInputProps }: Props) {
 
 const s = StyleSheet.create({
   wrap:      { gap: 6 },
-  label:     { fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 },
-  input:     { borderWidth: 1, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15 },
+  label:     { fontSize: 11, fontFamily: F_BOLD, textTransform: 'uppercase', letterSpacing: 1 },
+  input:     { borderWidth: 1, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, fontFamily: F_BODY },
   multiline: { minHeight: 88, textAlignVertical: 'top', paddingTop: 12 },
 })

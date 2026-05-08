@@ -1,9 +1,6 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// components/PostCard.tsx — One feed post card
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import { activeTheme } from '../lib/theme'
+import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../lib/fonts'
 import { WX_EMOJI } from '../constants'
 import type { FeedItem } from '../types'
 
@@ -73,12 +70,12 @@ const s = StyleSheet.create({
   header:     { flexDirection: 'row', alignItems: 'center', gap: 12 },
   avatar:     { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center', borderWidth: 1, overflow: 'hidden' },
   avatarImg:  { width: '100%', height: '100%' },
-  avatarText: { fontWeight: '700' },
-  author:     { fontSize: 15, fontWeight: '600' },
-  sub:        { fontSize: 12, marginTop: 1 },
-  date:       { fontSize: 12 },
+  avatarText: { fontFamily: F_BOLD, fontSize: 15 },
+  author:     { fontSize: 15, fontFamily: F_SEMI },
+  sub:        { fontSize: 12, fontFamily: F_BODY, marginTop: 1 },
+  date:       { fontSize: 12, fontFamily: F_BODY },
   photo:      { width: '100%', height: 220, borderRadius: 12, backgroundColor: '#EEE' },
-  body:       { fontSize: 14, lineHeight: 20 },
+  body:       { fontSize: 14, fontFamily: F_BODY, lineHeight: 20 },
   footer:     { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  metaChip:   { fontSize: 13 },
+  metaChip:   { fontSize: 13, fontFamily: F_BODY },
 })

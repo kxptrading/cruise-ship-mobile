@@ -1,10 +1,7 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// components/WeatherChips.tsx — Multi-select weather chips for the daily log
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { WX_EMOJI, WX_STYLE } from '../constants'
 import { activeTheme } from '../lib/theme'
+import { F_SEMI } from '../lib/fonts'
 
 interface Props {
   value:    string[]
@@ -47,5 +44,5 @@ export default function WeatherChips({ value, onChange }: Props) {
 const s = StyleSheet.create({
   row:   { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip:  { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999, borderWidth: 1 },
-  label: { fontSize: 12, fontWeight: '600' },
+  label: { fontSize: 12, fontFamily: F_SEMI },
 })

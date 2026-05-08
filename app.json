@@ -35,7 +35,8 @@
         {
           "photosPermission": "Cruise Ship Journal needs access to your photos to attach memories to your daily log."
         }
-      ]
+      ],
+      "expo-font"
     ]
   }
 }

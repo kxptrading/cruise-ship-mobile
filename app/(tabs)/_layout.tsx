@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router'
-import { Platform, Text } from 'react-native'
+import { Text } from 'react-native'
 import { activeTheme } from '../../src/lib/theme'
+import { F_DISPLAY, F_SEMI } from '../../src/lib/fonts'
 
 function tabIcon(emoji: string) {
   return ({ color }: { color: string }) => (
@@ -17,7 +18,7 @@ export default function TabsLayout() {
         headerStyle:      { backgroundColor: t.primaryDk },
         headerTitleStyle: {
           color:      '#FFFFFF',
-          fontFamily: Platform.select({ ios: 'Georgia', default: 'serif' }),
+          fontFamily: F_DISPLAY,
           fontSize:   20,
         },
         headerTintColor: '#FFFFFF',
@@ -30,7 +31,7 @@ export default function TabsLayout() {
           borderTopColor:  t.primaryMid,
           borderTopWidth:  1,
         },
-        tabBarLabelStyle: { fontWeight: '600', fontSize: 11 },
+        tabBarLabelStyle: { fontFamily: F_SEMI, fontSize: 11 },
       }}
     >
       <Tabs.Screen

@@ -26,6 +26,7 @@ import { useAuth } from '../../../../src/lib/auth'
 import { useVoyage } from '../../../../src/hooks/useVoyage'
 import { addPhoto, getPhotos } from '../../../../src/lib/photoStorage'
 import { activeTheme } from '../../../../src/lib/theme'
+import { F_DISPLAY, F_BOLD, F_BODY } from '../../../../src/lib/fonts'
 import Field from '../../../../src/components/Field'
 import StarRating from '../../../../src/components/StarRating'
 import WeatherChips from '../../../../src/components/WeatherChips'
@@ -202,11 +203,11 @@ const s = StyleSheet.create({
   center:       { flex: 1, alignItems: 'center', justifyContent: 'center' },
   scroll:       { padding: 16, gap: 14 },
   card:         { borderRadius: 18, borderWidth: 1, padding: 18, gap: 14 },
-  cardTitle:    { fontSize: 16, fontFamily: 'Georgia' },
-  sectionLabel: { fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4 },
-  sub:          { fontSize: 13 },
+  cardTitle:    { fontSize: 18, fontFamily: F_DISPLAY },
+  sectionLabel: { fontSize: 11, fontFamily: F_BOLD, textTransform: 'uppercase', letterSpacing: 1, marginTop: 4 },
+  sub:          { fontSize: 13, fontFamily: F_BODY },
   photoBtn:     { borderWidth: 1.5, borderRadius: 10, paddingVertical: 12, alignItems: 'center', borderStyle: 'dashed' },
-  photoBtnText: { fontSize: 14, fontWeight: '700' },
+  photoBtnText: { fontSize: 14, fontFamily: F_BOLD },
   publicRow:    { flexDirection: 'row', alignItems: 'center', gap: 12 },
   bottomSpace:  { height: 40 },
 })

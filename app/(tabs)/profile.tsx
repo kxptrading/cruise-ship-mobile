@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import {
   ActivityIndicator,
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -15,6 +14,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import { useAuth } from '../../src/lib/auth'
 import { useTheme, THEMES, THEME_GROUPS } from '../../src/lib/theme'
+import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../../src/lib/fonts'
 import type { ThemeKey } from '../../src/lib/theme'
 import { useProfile } from '../../src/hooks/useProfile'
 import { useVoyage } from '../../src/hooks/useVoyage'
@@ -321,57 +321,57 @@ const s = StyleSheet.create({
   // Hero
   hero:         { paddingTop: 28, paddingBottom: 48, paddingHorizontal: 20, gap: 14 },
   avatar:       { width: 76, height: 76, borderRadius: 38, alignItems: 'center', justifyContent: 'center', borderWidth: 3 },
-  avatarText:   { fontSize: 30, fontWeight: '700', color: '#FFFFFF' },
+  avatarText:   { fontSize: 30, fontFamily: F_BOLD, color: '#FFFFFF' },
   heroText:     { gap: 4 },
   nameRow:      { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  heroName:     { fontSize: 24, fontWeight: '700', color: '#FFFFFF', fontFamily: Platform.select({ ios: 'Georgia', default: 'serif' }) },
+  heroName:     { fontSize: 26, fontFamily: F_DISPLAY, color: '#FFFFFF' },
   editIcon:     { fontSize: 14, color: 'rgba(255,255,255,0.6)' },
-  heroSub:      { fontSize: 13, color: 'rgba(255,255,255,0.7)' },
-  nameInput:    { fontSize: 22, fontWeight: '700', color: '#FFFFFF', borderBottomWidth: 1.5, paddingBottom: 4, minWidth: 160 },
+  heroSub:      { fontSize: 13, fontFamily: F_BODY, color: 'rgba(255,255,255,0.7)' },
+  nameInput:    { fontSize: 22, fontFamily: F_DISPLAY, color: '#FFFFFF', borderBottomWidth: 1.5, paddingBottom: 4, minWidth: 160 },
 
   // Stats
   statsCard:    { flexDirection: 'row', marginHorizontal: 16, marginTop: -24, borderRadius: 18, borderWidth: 1, padding: 18, elevation: 4, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.08, shadowRadius: 8 },
   statItem:     { flex: 1, alignItems: 'center', gap: 2 },
-  statValue:    { fontSize: 22, fontWeight: '700' },
-  statLabel:    { fontSize: 11, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.5 },
+  statValue:    { fontSize: 22, fontFamily: F_BOLD },
+  statLabel:    { fontSize: 11, fontFamily: F_SEMI, textTransform: 'uppercase', letterSpacing: 0.5 },
   statDivider:  { width: 1, marginVertical: 4 },
 
   // Cards
   card:         { marginHorizontal: 16, marginTop: 16, borderRadius: 18, borderWidth: 1, padding: 20, gap: 2 },
-  cardTitle:    { fontSize: 17, fontWeight: '700', marginBottom: 2 },
-  cardSub:      { fontSize: 13, marginBottom: 10 },
+  cardTitle:    { fontSize: 20, fontFamily: F_DISPLAY, marginBottom: 2 },
+  cardSub:      { fontSize: 13, fontFamily: F_BODY, marginBottom: 10 },
   flex1:        { flex: 1 },
 
   // Theme picker
   themeGroup:   { marginTop: 12 },
-  groupLabel:   { fontSize: 11, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 },
+  groupLabel:   { fontSize: 11, fontFamily: F_BOLD, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 },
   circleRow:    { flexDirection: 'row', gap: 14 },
   circleWrap:   { alignItems: 'center', gap: 4 },
   circle:       { width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
-  checkmark:    { color: '#FFFFFF', fontSize: 18, fontWeight: '700' },
+  checkmark:    { color: '#FFFFFF', fontSize: 18, fontFamily: F_BOLD },
   circleEmoji:  { fontSize: 13 },
 
   // Preferences
   prefRow:      { flexDirection: 'row', alignItems: 'center', paddingVertical: 14, borderTopWidth: 1, gap: 8 },
   prefRowFirst: { borderTopWidth: 0, paddingTop: 6 },
-  prefLabel:    { flex: 1, fontSize: 15 },
+  prefLabel:    { flex: 1, fontSize: 15, fontFamily: F_BODY },
   prefRight:    { flexDirection: 'row', alignItems: 'center', gap: 6 },
-  prefValue:    { fontSize: 14 },
+  prefValue:    { fontSize: 14, fontFamily: F_BODY },
   prefChev:     { fontSize: 20 },
-  prefHint:     { fontSize: 12, marginTop: 2 },
+  prefHint:     { fontSize: 12, fontFamily: F_BODY, marginTop: 2 },
 
   // Sign out
   signOutBtn:   { margin: 16, marginTop: 12, backgroundColor: '#FEE2E2', borderRadius: 14, paddingVertical: 14, alignItems: 'center' },
-  signOutText:  { color: '#B91C1C', fontWeight: '700', fontSize: 16 },
+  signOutText:  { color: '#B91C1C', fontFamily: F_BOLD, fontSize: 16 },
   bottomPad:    { height: 32 },
 
   // Picker modal
   overlay:      { flex: 1, backgroundColor: 'rgba(0,0,0,0.4)', justifyContent: 'flex-end' },
   sheet:        { borderTopLeftRadius: 24, borderTopRightRadius: 24, paddingHorizontal: 20, paddingTop: 12, maxHeight: '70%' },
   sheetHandle:  { width: 40, height: 4, borderRadius: 2, alignSelf: 'center', marginBottom: 16 },
-  sheetTitle:   { fontSize: 17, fontWeight: '700', marginBottom: 8 },
+  sheetTitle:   { fontSize: 20, fontFamily: F_DISPLAY, marginBottom: 8 },
   sheetOption:  { flexDirection: 'row', alignItems: 'center', paddingVertical: 16, borderBottomWidth: StyleSheet.hairlineWidth },
-  sheetOptionText: { flex: 1, fontSize: 16 },
-  sheetCheck:   { fontSize: 18, fontWeight: '700' },
+  sheetOptionText: { flex: 1, fontSize: 16, fontFamily: F_BODY },
+  sheetCheck:   { fontSize: 18, fontFamily: F_BOLD },
   sheetPad:     { height: 32 },
 })
