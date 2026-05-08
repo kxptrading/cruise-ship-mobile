@@ -15,6 +15,7 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Stack } from 'expo-router'
 import { useAuth } from '../../../src/lib/auth'
+import { FluentEmoji } from '../../../src/components/FluentEmoji'
 import { useVoyage } from '../../../src/hooks/useVoyage'
 import { useNotes } from '../../../src/hooks/useNotes'
 import { activeTheme } from '../../../src/lib/theme'
@@ -221,7 +222,7 @@ export default function NotesScreen() {
         {notes.length === 0 ? (
           /* ── Empty state ──────────────────────────────────────────────── */
           <View style={s.empty}>
-            <Text style={s.emptyEmoji}>📝</Text>
+            <FluentEmoji name="memo" size={80} />
             <Text style={[s.emptyTitle, { color: t.text }]}>No notes yet</Text>
             <Text style={[s.emptySub, { color: t.muted }]}>
               Jot down anything — tips, reminders, ideas, things to remember.
@@ -303,7 +304,6 @@ const s = StyleSheet.create({
 
   // Empty state
   empty:        { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 40, gap: 12 },
-  emptyEmoji:   { fontSize: 52 },
   emptyTitle:   { fontSize: 26, fontFamily: F_DISPLAY, textAlign: 'center' },
   emptySub:     { fontSize: 14, fontFamily: F_BODY, textAlign: 'center', lineHeight: 20 },
   emptyBtn:     { marginTop: 8, paddingHorizontal: 28, paddingVertical: 14, borderRadius: 14 },

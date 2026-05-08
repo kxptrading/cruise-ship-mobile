@@ -1,11 +1,16 @@
 import { Tabs } from 'expo-router'
-import { Text } from 'react-native'
+import { Image } from 'react-native'
 import { activeTheme } from '../../src/lib/theme'
 import { F_DISPLAY, F_SEMI } from '../../src/lib/fonts'
+import { EMOJI } from '../../src/components/FluentEmoji'
 
-function tabIcon(emoji: string) {
-  return ({ color }: { color: string }) => (
-    <Text style={{ fontSize: 22, color }}>{emoji}</Text>
+function tabIcon(asset: ReturnType<typeof require>) {
+  return ({ focused }: { color: string; focused: boolean }) => (
+    <Image
+      source={asset}
+      style={{ width: 27, height: 27, opacity: focused ? 1 : 0.55 }}
+      resizeMode="contain"
+    />
   )
 }
 
@@ -14,16 +19,9 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        // Header — dark primary background with white title, mirrors web top nav
         headerStyle:      { backgroundColor: t.primaryDk },
-        headerTitleStyle: {
-          color:      '#FFFFFF',
-          fontFamily: F_DISPLAY,
-          fontSize:   20,
-        },
-        headerTintColor: '#FFFFFF',
-
-        // Tab bar — dark primary background, gold active, soft white inactive
+        headerTitleStyle: { color: '#FFFFFF', fontFamily: F_DISPLAY, fontSize: 20 },
+        headerTintColor:  '#FFFFFF',
         tabBarActiveTintColor:   t.accent,
         tabBarInactiveTintColor: 'rgba(255,255,255,0.55)',
         tabBarStyle: {
@@ -36,19 +34,19 @@ export default function TabsLayout() {
     >
       <Tabs.Screen
         name="index"
-        options={{ title: 'Feed', tabBarIcon: tabIcon('🌊') }}
+        options={{ title: 'Feed', tabBarIcon: tabIcon(EMOJI.water_wave) }}
       />
       <Tabs.Screen
         name="journal"
         options={{
-          title:        'Journal',
-          headerShown:  false,
-          tabBarIcon:   tabIcon('📔'),
+          title:       'Journal',
+          headerShown: false,
+          tabBarIcon:  tabIcon(EMOJI.spiral_notepad),
         }}
       />
       <Tabs.Screen
         name="profile"
-        options={{ title: 'Profile', headerShown: false, tabBarIcon: tabIcon('👤') }}
+        options={{ title: 'Profile', headerShown: false, tabBarIcon: tabIcon(EMOJI.bust_in_silhouette) }}
       />
     </Tabs>
   )

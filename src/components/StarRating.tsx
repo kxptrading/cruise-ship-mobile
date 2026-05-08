@@ -1,9 +1,5 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// components/StarRating.tsx — 0–5 tap-to-set star rating
-// ─────────────────────────────────────────────────────────────────────────────
-
-import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { activeTheme } from '../lib/theme'
+import { Pressable, StyleSheet, View } from 'react-native'
+import { FluentEmoji } from './FluentEmoji'
 
 interface Props {
   value:    number
@@ -11,8 +7,7 @@ interface Props {
   size?:    number
 }
 
-export default function StarRating({ value, onChange, size = 28 }: Props) {
-  const t = activeTheme()
+export default function StarRating({ value, onChange, size = 32 }: Props) {
   return (
     <View style={s.row}>
       {[1, 2, 3, 4, 5].map((n) => (
@@ -23,9 +18,12 @@ export default function StarRating({ value, onChange, size = 28 }: Props) {
           key={n}
           onPress={() => onChange(n === value ? 0 : n)}
         >
-          <Text style={{ fontSize: size, color: n <= value ? t.accent : t.border, marginRight: 2 }}>
-            ★
-          </Text>
+          <FluentEmoji
+            name="star"
+            size={size}
+            opacity={n <= value ? 1 : 0.2}
+            style={{ marginRight: 2 }}
+          />
         </Pressable>
       ))}
     </View>

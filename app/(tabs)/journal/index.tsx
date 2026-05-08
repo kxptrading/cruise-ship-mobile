@@ -15,6 +15,8 @@ import { useAuth } from '../../../src/lib/auth'
 import { useVoyage } from '../../../src/hooks/useVoyage'
 import { activeTheme } from '../../../src/lib/theme'
 import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../../../src/lib/fonts'
+import { FluentEmoji } from '../../../src/components/FluentEmoji'
+import type { EmojiKey } from '../../../src/components/FluentEmoji'
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -38,12 +40,12 @@ function voyageProgress(departureDate: string, totalNights: number) {
 // ── Section definitions ───────────────────────────────────────────────────────
 
 interface Section {
-  key:   string
-  emoji: string
-  label: string
-  sub:   string
-  color: string
-  href:  string
+  key:      string
+  emojiKey: EmojiKey
+  label:    string
+  sub:      string
+  color:    string
+  href:     string
 }
 
 // ── Main screen ───────────────────────────────────────────────────────────────
@@ -69,52 +71,52 @@ export default function JournalHub() {
 
   const sections: Section[] = [
     {
-      key:   'daily',
-      emoji: '📅',
-      label: 'Daily Log',
-      sub:   totalNights ? `${daysLogged} of ${totalNights} days written` : 'Day-by-day entries',
-      color: t.primary,
-      href:  '/(tabs)/journal/daily',
+      key:      'daily',
+      emojiKey: 'tear_off_calendar',
+      label:    'Daily Log',
+      sub:      totalNights ? `${daysLogged} of ${totalNights} days written` : 'Day-by-day entries',
+      color:    t.primary,
+      href:     '/(tabs)/journal/daily',
     },
     {
-      key:   'highlights',
-      emoji: '🏆',
-      label: 'Highlights',
-      sub:   'Your best moments',
-      color: '#F43F5E',
-      href:  '/(tabs)/journal/highlights',
+      key:      'highlights',
+      emojiKey: 'trophy',
+      label:    'Highlights',
+      sub:      'Your best moments',
+      color:    '#F43F5E',
+      href:     '/(tabs)/journal/highlights',
     },
     {
-      key:   'food',
-      emoji: '🍴',
-      label: 'Food Log',
-      sub:   'Meals & drinks',
-      color: '#F97316',
-      href:  '/(tabs)/journal/food',
+      key:      'food',
+      emojiKey: 'fork_and_knife',
+      label:    'Food Log',
+      sub:      'Meals & drinks',
+      color:    '#F97316',
+      href:     '/(tabs)/journal/food',
     },
     {
-      key:   'entertainment',
-      emoji: '🎭',
-      label: 'Entertainment',
-      sub:   'Shows & events',
-      color: '#8B5CF6',
-      href:  '/(tabs)/journal/entertainment',
+      key:      'entertainment',
+      emojiKey: 'performing_arts',
+      label:    'Entertainment',
+      sub:      'Shows & events',
+      color:    '#8B5CF6',
+      href:     '/(tabs)/journal/entertainment',
     },
     {
-      key:   'notes',
-      emoji: '📝',
-      label: 'Notes',
-      sub:   'General notes',
-      color: '#F59E0B',
-      href:  '/(tabs)/journal/notes',
+      key:      'notes',
+      emojiKey: 'memo',
+      label:    'Notes',
+      sub:      'General notes',
+      color:    '#F59E0B',
+      href:     '/(tabs)/journal/notes',
     },
     {
-      key:   'itinerary',
-      emoji: '🗺️',
-      label: 'Itinerary',
-      sub:   'Port schedule',
-      color: '#10B981',
-      href:  '/(tabs)/journal/daily',
+      key:      'itinerary',
+      emojiKey: 'world_map',
+      label:    'Itinerary',
+      sub:      'Port schedule',
+      color:    '#10B981',
+      href:     '/(tabs)/journal/daily',
     },
   ]
 
@@ -242,7 +244,7 @@ export default function JournalHub() {
                 ]}
               >
                 <View style={[s.cardIcon, { backgroundColor: sec.color + '1A' }]}>
-                  <Text style={s.cardEmoji}>{sec.emoji}</Text>
+                  <FluentEmoji name={sec.emojiKey} size={34} />
                 </View>
                 <Text style={[s.cardLabel, { color: t.text }]}>{sec.label}</Text>
                 <Text style={[s.cardSub, { color: t.muted }]} numberOfLines={2}>{sec.sub}</Text>
@@ -294,8 +296,7 @@ const s = StyleSheet.create({
   // Section grid — 2 columns
   grid:      { flexDirection: 'row', flexWrap: 'wrap', padding: 12, gap: 10, marginTop: 6 },
   card:      { width: '47.5%', borderRadius: 18, borderWidth: 1, padding: 16, gap: 6, minHeight: 130 },
-  cardIcon:  { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginBottom: 4 },
-  cardEmoji: { fontSize: 22 },
+  cardIcon:  { width: 50, height: 50, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginBottom: 4 },
   cardLabel: { fontSize: 15, fontFamily: F_DISPLAY },
   cardSub:   { fontSize: 12, fontFamily: F_BODY, lineHeight: 16, flex: 1 },
   cardChev:  { fontSize: 18, alignSelf: 'flex-end' },

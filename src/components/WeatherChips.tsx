@@ -1,24 +1,33 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { WX_EMOJI, WX_STYLE } from '../constants'
+import { WX_STYLE } from '../constants'
 import { activeTheme } from '../lib/theme'
 import { F_SEMI } from '../lib/fonts'
+import { FluentEmoji } from './FluentEmoji'
+import type { EmojiKey } from './FluentEmoji'
 
 interface Props {
   value:    string[]
   onChange: (next: string[]) => void
 }
 
-const ALL = Object.keys(WX_EMOJI)
+const WX_OPTIONS: { name: string; emojiKey: EmojiKey }[] = [
+  { name: 'Sunny',  emojiKey: 'sun' },
+  { name: 'Cloudy', emojiKey: 'cloud' },
+  { name: 'Rainy',  emojiKey: 'cloud_with_rain' },
+  { name: 'Windy',  emojiKey: 'wind_face' },
+  { name: 'Hot',    emojiKey: 'fire' },
+  { name: 'Mild',   emojiKey: 'sun_behind_small_cloud' },
+  { name: 'Cool',   emojiKey: 'snowflake' },
+]
 
 export default function WeatherChips({ value, onChange }: Props) {
   const t = activeTheme()
-  const toggle = (name: string) => {
+  const toggle = (name: string) =>
     onChange(value.includes(name) ? value.filter(v => v !== name) : [...value, name])
-  }
 
   return (
     <View style={s.row}>
-      {ALL.map((name) => {
+      {WX_OPTIONS.map(({ name, emojiKey }) => {
         const on    = value.includes(name)
         const style = WX_STYLE[name]
         return (
@@ -32,7 +41,7 @@ export default function WeatherChips({ value, onChange }: Props) {
               { backgroundColor: on ? style.background : t.surface, borderColor: on ? style.border : t.border },
             ]}
           >
-            <Text style={{ fontSize: 14 }}>{WX_EMOJI[name]}</Text>
+            <FluentEmoji name={emojiKey} size={18} />
             <Text style={[s.label, { color: on ? style.color : t.muted }]}>{name}</Text>
           </Pressable>
         )

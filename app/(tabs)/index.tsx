@@ -12,6 +12,7 @@ import { useFeed } from '../../src/hooks/useFeed'
 import PostCard from '../../src/components/PostCard'
 import { activeTheme } from '../../src/lib/theme'
 import { F_DISPLAY, F_BODY } from '../../src/lib/fonts'
+import { FluentEmoji } from '../../src/components/FluentEmoji'
 
 export default function Feed() {
   const t = activeTheme()
@@ -45,6 +46,7 @@ export default function Feed() {
             </View>
           ) : (
             <View style={s.empty}>
+              <FluentEmoji name="water_wave" size={72} />
               <Text style={[s.emptyTitle, { color: t.text }]}>Calm seas</Text>
               <Text style={[s.emptySub, { color: t.muted }]}>
                 No public logs yet. Toggle a daily log to public to see it here.
