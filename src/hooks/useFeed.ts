@@ -109,7 +109,7 @@ export function useFeed(): UseFeedReturn {
       const photo  = photoMap.get(`${row.voyage_id}-${row.day_number}`)
 
       const author: FeedAuthor = {
-        name:      prof?.display_name || voyage?.user_id?.slice(0, 8) || 'Traveller',
+        name:      prof?.display_name || 'Traveller',
         avatarUrl: prof?.avatar_url ?? '',
         initials:  initialsFor(prof?.display_name),
         shipName:  voyage?.ship_name ?? '',
