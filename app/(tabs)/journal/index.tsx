@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import {
   ActivityIndicator,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -136,6 +137,18 @@ export default function JournalHub() {
         >
           {/* ── Voyage Hero ───────────────────────────────────────────────── */}
           <View style={[s.hero, { backgroundColor: t.primaryDk }]}>
+            {!!voyage?.coverPhotoUrl && (
+              <Image
+                source={{ uri: voyage.coverPhotoUrl }}
+                style={StyleSheet.absoluteFillObject}
+                resizeMode="cover"
+              />
+            )}
+            {/* Overlay — always present; darker when photo is showing */}
+            <View style={[
+              StyleSheet.absoluteFillObject,
+              { backgroundColor: voyage?.coverPhotoUrl ? 'rgba(0,0,0,0.52)' : 'rgba(0,0,0,0.15)' },
+            ]} />
 
             {voyage ? (
               <>
@@ -252,7 +265,7 @@ const s = StyleSheet.create({
   scroll: { flexGrow: 1 },
 
   // Hero
-  hero:          { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 0 },
+  hero:          { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 0, minHeight: 220, overflow: 'hidden' },
   heroLine:      { fontSize: 10, fontFamily: F_BOLD, letterSpacing: 2, textTransform: 'uppercase', marginBottom: 4 },
   heroShip:      { fontSize: 32, fontFamily: F_DISPLAY, color: '#FFFFFF', marginBottom: 6 },
   heroRoute:     { fontSize: 13, fontFamily: F_BODY, lineHeight: 18 },

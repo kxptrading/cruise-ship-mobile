@@ -22,7 +22,7 @@ export default function PostCard({ post, onPress }: Props) {
     >
       <View style={s.header}>
         <View style={[s.avatar, { backgroundColor: t.light, borderColor: t.border }]}>
-          {author?.avatarUrl
+          {!!author?.avatarUrl
             ? <Image source={{ uri: author.avatarUrl }} style={s.avatarImg} />
             : <Text style={[s.avatarText, { color: t.primary }]}>{initials}</Text>}
         </View>

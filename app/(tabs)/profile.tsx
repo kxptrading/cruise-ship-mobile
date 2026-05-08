@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import {
   ActivityIndicator,
+  Image,
   Modal,
   Pressable,
   ScrollView,
@@ -142,8 +143,23 @@ export default function Profile() {
         >
           {/* ── Hero ─────────────────────────────────────────────────────── */}
           <View style={[s.hero, { backgroundColor: t.primaryDk }]}>
+            {!!profile.bannerUrl && (
+              <Image
+                source={{ uri: profile.bannerUrl }}
+                style={StyleSheet.absoluteFillObject}
+                resizeMode="cover"
+              />
+            )}
+            <View style={[
+              StyleSheet.absoluteFillObject,
+              { backgroundColor: profile.bannerUrl ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.1)' },
+            ]} />
+
             <View style={[s.avatar, { backgroundColor: t.primary, borderColor: '#FFFFFF' }]}>
-              <Text style={s.avatarText}>{userInitials}</Text>
+              {profile.avatarUrl
+                ? <Image source={{ uri: profile.avatarUrl }} style={s.avatarImg} />
+                : <Text style={s.avatarText}>{userInitials}</Text>
+              }
             </View>
 
             <View style={s.heroText}>
@@ -327,8 +343,9 @@ const s = StyleSheet.create({
   scroll:       { flexGrow: 1 },
 
   // Hero
-  hero:         { paddingTop: 28, paddingBottom: 48, paddingHorizontal: 20, gap: 14 },
-  avatar:       { width: 76, height: 76, borderRadius: 38, alignItems: 'center', justifyContent: 'center', borderWidth: 3 },
+  hero:         { paddingTop: 28, paddingBottom: 48, paddingHorizontal: 20, gap: 14, overflow: 'hidden', minHeight: 200 },
+  avatar:       { width: 76, height: 76, borderRadius: 38, alignItems: 'center', justifyContent: 'center', borderWidth: 3, overflow: 'hidden' },
+  avatarImg:    { width: '100%', height: '100%' },
   avatarText:   { fontSize: 30, fontFamily: F_BOLD, color: '#FFFFFF' },
   heroText:     { gap: 4 },
   nameRow:      { flexDirection: 'row', alignItems: 'center', gap: 8 },

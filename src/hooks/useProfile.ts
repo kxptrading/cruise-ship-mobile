@@ -7,6 +7,7 @@ export interface Profile {
   homePort:            string
   favouriteCruiseLine: string
   avatarUrl:           string
+  bannerUrl:           string
   cabinPreference:     string
   diningTime:          string
   dietary:             string
@@ -21,6 +22,7 @@ const DEFAULTS: Profile = {
   homePort:            '',
   favouriteCruiseLine: '',
   avatarUrl:           '',
+  bannerUrl:           '',
   cabinPreference:     '',
   diningTime:          '',
   dietary:             '',
@@ -36,6 +38,7 @@ function fromDb(row: Record<string, unknown>): Profile {
     homePort:            String(row.home_port             ?? ''),
     favouriteCruiseLine: String(row.favourite_cruise_line ?? ''),
     avatarUrl:           String(row.avatar_url            ?? ''),
+    bannerUrl:           String(row.banner_url            ?? ''),
     cabinPreference:     String(row.cabin_preference      ?? ''),
     diningTime:          String(row.dining_time           ?? ''),
     dietary:             String(row.dietary               ?? ''),
@@ -52,6 +55,7 @@ function toDb(patch: Partial<Profile>): Record<string, unknown> {
   if (patch.homePort            !== undefined) row.home_port             = patch.homePort
   if (patch.favouriteCruiseLine !== undefined) row.favourite_cruise_line = patch.favouriteCruiseLine
   if (patch.avatarUrl           !== undefined) row.avatar_url            = patch.avatarUrl
+  if (patch.bannerUrl           !== undefined) row.banner_url            = patch.bannerUrl
   if (patch.cabinPreference     !== undefined) row.cabin_preference      = patch.cabinPreference
   if (patch.diningTime          !== undefined) row.dining_time           = patch.diningTime
   if (patch.dietary             !== undefined) row.dietary               = patch.dietary
