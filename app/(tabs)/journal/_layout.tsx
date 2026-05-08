@@ -1,22 +1,25 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// app/(tabs)/journal/_layout.tsx — Stack inside the Journal tab
-// ─────────────────────────────────────────────────────────────────────────────
-
 import { Stack } from 'expo-router'
 import { activeTheme } from '../../../src/lib/theme'
+import { F_DISPLAY, F_BODY } from '../../../src/lib/fonts'
 
 export default function JournalLayout() {
   const t = activeTheme()
   return (
     <Stack
       screenOptions={{
-        headerStyle:      { backgroundColor: t.surface },
-        headerTintColor:  t.primary,
-        headerTitleStyle: { color: t.text, fontFamily: 'Georgia', fontSize: 18 },
+        headerStyle:      { backgroundColor: t.primaryDk },
+        headerTintColor:  '#FFFFFF',
+        headerTitleStyle: { color: '#FFFFFF', fontFamily: F_DISPLAY, fontSize: 20 },
+        headerBackTitle:  'Back',
       }}
     >
-      <Stack.Screen name="index"      options={{ title: 'Journal' }} />
-      <Stack.Screen name="daily/[day]" options={{ title: 'Daily Log' }} />
+      <Stack.Screen name="index"             options={{ headerShown: false }} />
+      <Stack.Screen name="daily/index"       options={{ title: 'Daily Log' }} />
+      <Stack.Screen name="daily/[day]"       options={{ title: 'Day Entry' }} />
+      <Stack.Screen name="highlights"        options={{ title: 'Highlights' }} />
+      <Stack.Screen name="food"              options={{ title: 'Food Log' }} />
+      <Stack.Screen name="entertainment"     options={{ title: 'Entertainment' }} />
+      <Stack.Screen name="notes"             options={{ title: 'Notes' }} />
     </Stack>
   )
 }
