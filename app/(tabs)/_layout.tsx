@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { Tabs } from 'expo-router'
 import { Image } from 'react-native'
 import { activeTheme } from '../../src/lib/theme'
@@ -8,7 +9,7 @@ function tabIcon(asset: ReturnType<typeof require>) {
   return ({ focused }: { color: string; focused: boolean }) => (
     <Image
       source={asset}
-      style={{ width: 27, height: 27, opacity: focused ? 1 : 0.55 }}
+      style={{ width: 24, height: 24, opacity: focused ? 1 : 0.55 }}
       resizeMode="contain"
     />
   )
@@ -28,8 +29,11 @@ export default function TabsLayout() {
           backgroundColor: t.primaryDk,
           borderTopColor:  t.primaryMid,
           borderTopWidth:  1,
+          paddingTop:      6,
+          paddingBottom:   Platform.OS === 'ios' ? 18 : 6,
+          height:          Platform.OS === 'ios' ? 80 : 62,
         },
-        tabBarLabelStyle: { fontFamily: F_SEMI, fontSize: 11 },
+        tabBarLabelStyle: { fontFamily: F_SEMI, fontSize: 10, marginTop: 2 },
       }}
     >
       <Tabs.Screen
