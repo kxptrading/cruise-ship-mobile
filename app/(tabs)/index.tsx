@@ -1,6 +1,7 @@
 import {
   ActivityIndicator,
   FlatList,
+  Image,
   RefreshControl,
   StyleSheet,
   Text,
@@ -15,26 +16,27 @@ import { activeTheme } from '../../src/lib/theme'
 import { F_DISPLAY, F_SEMI, F_BODY } from '../../src/lib/fonts'
 import { FluentEmoji } from '../../src/components/FluentEmoji'
 
+const LOGO = require('../../assets/logo.png')
+// Logo is 960×470 → aspect 2.04:1
+const LOGO_H = 48
+const LOGO_W  = Math.round(LOGO_H * (960 / 470))   // ≈ 98px
+
 // ── App banner ────────────────────────────────────────────────────────────────
 
 function AppBanner() {
   const t = activeTheme()
   return (
     <View style={[b.wrap, { backgroundColor: t.surface, borderBottomColor: t.border }]}>
-      <FluentEmoji name="ship" size={36} />
-      <View style={b.text}>
-        <Text style={[b.appName, { color: t.primaryDk }]}>Cruise Log</Text>
-        <Text style={[b.tagline, { color: t.muted }]}>Your voyage journal</Text>
-      </View>
+      <Image source={LOGO} style={b.logo} resizeMode="contain" />
+      <Text style={[b.appName, { color: t.primaryDk }]}>Cruise Log</Text>
     </View>
   )
 }
 
 const b = StyleSheet.create({
-  wrap:    { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: StyleSheet.hairlineWidth },
-  text:    { gap: 1 },
-  appName: { fontSize: 26, fontFamily: F_DISPLAY, lineHeight: 30 },
-  tagline: { fontSize: 12, fontFamily: F_BODY },
+  wrap:    { flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 20, paddingVertical: 12, borderBottomWidth: StyleSheet.hairlineWidth },
+  logo:    { width: LOGO_W, height: LOGO_H },
+  appName: { fontSize: 28, fontFamily: F_DISPLAY, lineHeight: 34 },
 })
 
 // ── Feed screen ───────────────────────────────────────────────────────────────
