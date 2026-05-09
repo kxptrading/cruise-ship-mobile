@@ -1,57 +1,14 @@
-import { Platform } from 'react-native'
 import { Tabs } from 'expo-router'
-import { Image } from 'react-native'
-import { activeTheme } from '../../src/lib/theme'
-import { F_DISPLAY, F_SEMI } from '../../src/lib/fonts'
-import { EMOJI } from '../../src/components/FluentEmoji'
-
-function tabIcon(asset: ReturnType<typeof require>) {
-  return ({ focused }: { color: string; focused: boolean }) => (
-    <Image
-      source={asset}
-      style={{ width: 24, height: 24, opacity: focused ? 1 : 0.55 }}
-      resizeMode="contain"
-    />
-  )
-}
 
 export default function TabsLayout() {
-  const t = activeTheme()
   return (
     <Tabs
-      screenOptions={{
-        headerStyle:      { backgroundColor: t.primaryDk },
-        headerTitleStyle: { color: '#FFFFFF', fontFamily: F_DISPLAY, fontSize: 20 },
-        headerTintColor:  '#FFFFFF',
-        tabBarActiveTintColor:   t.accent,
-        tabBarInactiveTintColor: 'rgba(255,255,255,0.55)',
-        tabBarStyle: {
-          backgroundColor: t.primaryDk,
-          borderTopColor:  t.primaryMid,
-          borderTopWidth:  1,
-          paddingTop:      6,
-          paddingBottom:   Platform.OS === 'ios' ? 18 : 6,
-          height:          Platform.OS === 'ios' ? 80 : 62,
-        },
-        tabBarLabelStyle: { fontFamily: F_SEMI, fontSize: 10, marginTop: 2 },
-      }}
+      tabBar={() => null}
+      screenOptions={{ headerShown: false }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{ title: 'Feed', headerShown: false, tabBarIcon: tabIcon(EMOJI.water_wave) }}
-      />
-      <Tabs.Screen
-        name="journal"
-        options={{
-          title:       'Journal',
-          headerShown: false,
-          tabBarIcon:  tabIcon(EMOJI.spiral_notepad),
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{ title: 'Profile', headerShown: false, tabBarIcon: tabIcon(EMOJI.bust_in_silhouette) }}
-      />
+      <Tabs.Screen name="index"   />
+      <Tabs.Screen name="journal" />
+      <Tabs.Screen name="profile" />
     </Tabs>
   )
 }

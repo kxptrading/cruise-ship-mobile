@@ -15,6 +15,7 @@ import { useAuth } from '../../../src/lib/auth'
 import { useVoyage } from '../../../src/hooks/useVoyage'
 import { activeTheme } from '../../../src/lib/theme'
 import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../../../src/lib/fonts'
+import { TopNav } from '../../../src/components/TopNav'
 import { FluentEmoji } from '../../../src/components/FluentEmoji'
 import type { EmojiKey } from '../../../src/components/FluentEmoji'
 
@@ -130,8 +131,9 @@ export default function JournalHub() {
 
   return (
     <>
-      <StatusBar style="light" />
-      <SafeAreaView style={[s.fill, { backgroundColor: t.primaryDk }]} edges={['top']}>
+      <StatusBar style="dark" />
+      <TopNav />
+      <SafeAreaView style={[s.fill, { backgroundColor: t.primaryDk }]} edges={[]}>
         <ScrollView
           style={{ backgroundColor: t.bg }}
           contentContainerStyle={s.scroll}

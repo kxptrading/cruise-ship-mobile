@@ -18,6 +18,7 @@ import { useTheme, THEMES, THEME_GROUPS } from '../../src/lib/theme'
 import type { ThemeKey } from '../../src/lib/theme'
 import { F_DISPLAY, F_BOLD, F_SEMI, F_BODY } from '../../src/lib/fonts'
 import { useProfile } from '../../src/hooks/useProfile'
+import { TopNav } from '../../src/components/TopNav'
 import { useVoyage } from '../../src/hooks/useVoyage'
 import { useBadges } from '../../src/hooks/useBadges'
 import { FluentEmoji } from '../../src/components/FluentEmoji'
@@ -159,8 +160,9 @@ export default function Profile() {
 
   return (
     <>
-      <StatusBar style="light" />
-      <SafeAreaView style={[s.fill, { backgroundColor: t.primaryDk }]} edges={['top']}>
+      <StatusBar style="dark" />
+      <TopNav />
+      <SafeAreaView style={[s.fill, { backgroundColor: t.primaryDk }]} edges={[]}>
         <ScrollView style={{ backgroundColor: t.bg }} contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
 
           {/* ── Hero ──────────────────────────────────────────────────────── */}
