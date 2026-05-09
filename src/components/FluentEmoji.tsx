@@ -23,10 +23,16 @@ const ASSETS = {
   snowflake:              require('../../assets/emoji/snowflake.png'),
   // Star rating
   star:                   require('../../assets/emoji/star.png'),
+  // Badges
+  open_book:              require('../../assets/emoji/open_book.png'),
+  money_bag:              require('../../assets/emoji/money_bag.png'),
+  camera:                 require('../../assets/emoji/camera.png'),
+  round_pushpin:          require('../../assets/emoji/round_pushpin.png'),
   // Misc
   ship:                   require('../../assets/emoji/ship.png'),
   sparkles:               require('../../assets/emoji/sparkles.png'),
   fire:                   require('../../assets/emoji/fire.png'),
+  artist_palette:         require('../../assets/emoji/artist_palette.png'),
 } as const
 
 export type EmojiKey = keyof typeof ASSETS

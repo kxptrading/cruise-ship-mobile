@@ -14,6 +14,10 @@ export interface Profile {
   currency:            string
   units:               string
   theme:               string
+  trait1:              string
+  trait2:              string
+  trait3:              string
+  trait4:              string
 }
 
 const DEFAULTS: Profile = {
@@ -29,6 +33,10 @@ const DEFAULTS: Profile = {
   currency:            'GBP',
   units:               'Metric',
   theme:               '',
+  trait1:              '',
+  trait2:              '',
+  trait3:              '',
+  trait4:              '',
 }
 
 function fromDb(row: Record<string, unknown>): Profile {
@@ -42,9 +50,13 @@ function fromDb(row: Record<string, unknown>): Profile {
     cabinPreference:     String(row.cabin_preference      ?? ''),
     diningTime:          String(row.dining_time           ?? ''),
     dietary:             String(row.dietary               ?? ''),
-    currency:            String(row.currency              ?? 'GBP'),
-    units:               String(row.units                 ?? 'Metric'),
-    theme:               String(row.theme                 ?? ''),
+    currency:            String(row.currency   ?? 'GBP'),
+    units:               String(row.units      ?? 'Metric'),
+    theme:               String(row.theme      ?? ''),
+    trait1:              String(row.trait_1    ?? ''),
+    trait2:              String(row.trait_2    ?? ''),
+    trait3:              String(row.trait_3    ?? ''),
+    trait4:              String(row.trait_4    ?? ''),
   }
 }
 
@@ -59,9 +71,13 @@ function toDb(patch: Partial<Profile>): Record<string, unknown> {
   if (patch.cabinPreference     !== undefined) row.cabin_preference      = patch.cabinPreference
   if (patch.diningTime          !== undefined) row.dining_time           = patch.diningTime
   if (patch.dietary             !== undefined) row.dietary               = patch.dietary
-  if (patch.currency            !== undefined) row.currency              = patch.currency
-  if (patch.units               !== undefined) row.units                 = patch.units
-  if (patch.theme               !== undefined) row.theme                 = patch.theme
+  if (patch.currency !== undefined) row.currency = patch.currency
+  if (patch.units    !== undefined) row.units    = patch.units
+  if (patch.theme    !== undefined) row.theme    = patch.theme
+  if (patch.trait1   !== undefined) row.trait_1  = patch.trait1
+  if (patch.trait2   !== undefined) row.trait_2  = patch.trait2
+  if (patch.trait3   !== undefined) row.trait_3  = patch.trait3
+  if (patch.trait4   !== undefined) row.trait_4  = patch.trait4
   return row
 }
 
