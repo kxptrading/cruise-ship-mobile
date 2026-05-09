@@ -38,7 +38,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen
         name="index"
-        options={{ title: 'Feed', tabBarIcon: tabIcon(EMOJI.water_wave) }}
+        options={{ title: 'Feed', headerShown: false, tabBarIcon: tabIcon(EMOJI.water_wave) }}
       />
       <Tabs.Screen
         name="journal"
