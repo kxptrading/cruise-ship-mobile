@@ -28,6 +28,10 @@ const ASSETS = {
   money_bag:              require('../../assets/emoji/money_bag.png'),
   camera:                 require('../../assets/emoji/camera.png'),
   round_pushpin:          require('../../assets/emoji/round_pushpin.png'),
+  // Chat
+  speech_balloon:         require('../../assets/emoji/speech_balloon.png'),
+  people_hugging:         require('../../assets/emoji/people_hugging.png'),
+  bell:                   require('../../assets/emoji/bell.png'),
   // Misc
   ship:                   require('../../assets/emoji/ship.png'),
   sparkles:               require('../../assets/emoji/sparkles.png'),

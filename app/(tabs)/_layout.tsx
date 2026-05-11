@@ -8,6 +8,7 @@ export default function TabsLayout() {
     >
       <Tabs.Screen name="index"   />
       <Tabs.Screen name="journal" />
+      <Tabs.Screen name="chat"    />
       <Tabs.Screen name="profile" />
     </Tabs>
   )

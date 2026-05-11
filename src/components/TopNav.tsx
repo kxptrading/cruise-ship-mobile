@@ -14,6 +14,7 @@ const LOGO_W  = Math.round(LOGO_H * (960 / 470))
 const NAV_ITEMS: { emoji: EmojiKey; label: string; href: string; match: string }[] = [
   { emoji: 'water_wave',        label: 'Feed',    href: '/(tabs)/',        match: '/'        },
   { emoji: 'spiral_notepad',    label: 'Journal', href: '/(tabs)/journal', match: '/journal' },
+  { emoji: 'speech_balloon',    label: 'Chat',    href: '/(tabs)/chat',    match: '/chat'    },
   { emoji: 'bust_in_silhouette',label: 'Profile', href: '/(tabs)/profile', match: '/profile' },
 ]
 
